@@ -42,6 +42,9 @@ yesButton.addEventListener('click', () => {
 
     //change the scale of the yes button to 4
     yesButton.style.transform = "scale(1.6)";
+
+    // Khoa: added a class to the yes button so it shakes when clicked
+    yesButton.classList.add('shake');
 });
 
 noButton.addEventListener('click', () => {
