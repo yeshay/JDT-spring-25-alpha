@@ -109,14 +109,6 @@ span {
     animation: shake 0.1s infinite;
 }
 
-#yes:hover {
-    transform: scale(2);
-    transition: transform 0.5s;
-}
-#no:hover {
-    transform: scale(0.3);
-    transition: transform 0.5s;
-}
 
 
 /* each letter in "love" bounces */
