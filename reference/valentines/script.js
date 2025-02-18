@@ -1,8 +1,3 @@
-const yesButton = document.getElementById('yes');
-const noButton = document.getElementById('no');
-let yesScale = 1; 
-let noScale = 1; 
-
 const messages = [
     "Are you sure?",
     "Really sure?",
@@ -30,49 +25,41 @@ const messages = [
 
 let currentMessageIndex = 0;
 
-yesButton.addEventListener('click', () => {
-    // switch the image in id="joe" to a differnet link
-    document.getElementById('joe').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtJdrlQKo8W5ulJusEb-wZTiXbt3LWi7IZMQ&s";
+const yesButton = document.getElementById("yes");
+const noButton = document.getElementById("no");
 
-    //change the text of the yes button to a different message
-    yesButton.textContent = "Yay!!!!!!!!!!!!!";
+let yesScale = 1;
+let noScale = 1;
 
-    //hide the no button
-    noButton.style.display = "none";
+function updateYes() {
+    document.getElementById("joe").src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzBLccBEckQwuDmqMRCRHHkxNh79NGp5nBdg&s"
+    yesButton.textContent = 'Yay!!!!!!!!!!!!!!!!!'
+    noButton.style.display = 'none'
+    yesButton.style.transform = `scale(1.6)`;
+}
 
-    //change the scale of the yes button to 4
-    yesButton.style.transform = "scale(1.6)";
+yesButton.addEventListener("click", updateYes);
 
-    // Add a class to the yes button so it shakes when clicked
-    yesButton.classList.add('shake');
-});
-
-noButton.addEventListener('click', () => {
-    // Increase the green button's scale
+noButton.addEventListener("click", () => {
     yesScale += 0.1;
     yesButton.style.transform = `scale(${yesScale})`;
 
-    // Decrease the red button's scale
-    noScale -= 0.05;
+    noScale -= 0.1;
     noButton.style.transform = `scale(${noScale})`;
 
-    // Teleport the red button to a random location
     teleportButton(noButton);
 
-    // Update the text of the no button to the next message
     noButton.textContent = messages[currentMessageIndex];
-
-    // Increment the message index, and reset to 0 if it reaches the end of the array
     currentMessageIndex = (currentMessageIndex + 1) % messages.length;
 });
 
 function teleportButton(button) {
-    const screenWidth = window.innerWidth; // Get the width of the screen
-    const screenHeight = window.innerHeight; // Get the height of the screen
-    const card = document.querySelector('.card'); // Get the card element
-    const cardRect = card.getBoundingClientRect(); // Get the card's position and size
+    const screenWidth = window.innerWidth
+    const screenHeight = window.innerHeight
 
-    // Define padding to keep the button within the screen and away from the card
+    const card = document.querySelector('.card')
+    const cardRect = card.getBoundingClientRect()
+
     const padding = 20;
 
     // Calculate safe boundaries for the button
@@ -94,8 +81,9 @@ function teleportButton(button) {
         randomY < cardRect.bottom + padding
     );
 
+    
     // Apply the new position
-    button.style.position = 'absolute'; // Ensure the button can move freely
+    button.style.position = 'absolute';
     button.style.left = `${randomX}px`;
     button.style.top = `${randomY}px`;
 }
